@@ -46,6 +46,15 @@ public class User {
         return this.borrowedBooks.contains(book);
     }
 
+    public void displayUserInformation() {
+        System.out.println("User name: " + this.name);
+        System.out.println("User ID: " + this.Id);
+        System.out.println("Borrowed books: ");
+        for (Book book : borrowedBooks) {
+            System.out.println(book.toString());
+        }
+    }
+
     @Override
     public String toString() {
         return "User{" + "name=" + name + ", Id=" + Id + ", borrowedBooks=" + borrowedBooks + '}';
