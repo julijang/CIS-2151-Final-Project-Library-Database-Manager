@@ -1,6 +1,8 @@
 package librarymanagement;
 
 import java.io.*;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.HashMap;
 
 public class Library {
@@ -43,16 +45,12 @@ public class Library {
         }
     }
 
-    public void getBooks() {
-        for (Book book : books.values()) {
-            System.out.println(users.toString());
-        }
+    public Collection<Book> getBooks() {
+        return books.values();
     }
 
-    public void getUsers() {
-        for (User user : users.values()) {
-            System.out.println(users.toString());
-        }
+    public Collection<User> getUsers() {
+        return users.values();
     }
 
     public void loadBooksFromFile() {

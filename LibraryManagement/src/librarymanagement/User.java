@@ -5,12 +5,12 @@ import java.util.ArrayList;
 public class User {
 
     private String name;
-    private String Id;
+    private String ID;
     private ArrayList<Book> borrowedBooks;
 
     public User(String name, String ID) {
         this.name = name;
-        this.Id = Id;
+        this.ID = ID;
         this.borrowedBooks = new ArrayList<>();
     }
 
@@ -23,11 +23,11 @@ public class User {
     }
 
     public String getId() {
-        return Id;
+        return ID;
     }
 
     public void setID(String ID) {
-        this.Id = ID;
+        this.ID = ID;
     }
 
     public ArrayList<Book> getBorrowedBooks() {
@@ -48,7 +48,7 @@ public class User {
 
     public void displayUserInformation() {
         System.out.println("User name: " + this.name);
-        System.out.println("User ID: " + this.Id);
+        System.out.println("User ID: " + this.ID);
         System.out.println("Borrowed books: ");
         for (Book book : borrowedBooks) {
             System.out.println(book.toString());
@@ -57,7 +57,7 @@ public class User {
 
     @Override
     public String toString() {
-        return "User{" + "name=" + name + ", Id=" + Id + ", borrowedBooks=" + borrowedBooks + '}';
+        return "User{" + "name=" + name + ", ID=" + ID + ", borrowedBooks=" + borrowedBooks + '}';
     }
 
 }
