@@ -10,6 +10,7 @@ public class LibraryCLI {
 
     public void start() {
         library = new Library();
+        FileManager fileManager = new FileManager();
         library.loadBooksFromFile();
         library.loadUsersFromFile();
         int input = 0;
@@ -57,6 +58,7 @@ public class LibraryCLI {
                     System.out.println("Thank you for using the Library database.");
                     library.saveBooksToFile();
                     library.saveUsersToFile();
+                    break;
             }
         }
 
@@ -82,13 +84,8 @@ public class LibraryCLI {
     }
 
     public void displayBooks() {
-        List<Book> bookList = FileManager.loadBooks();
-        Collections.sort(bookList, Comparator.comparing(Book::getTitle));
-
         System.out.println("List of Books:");
-        for (Book book : bookList) {
-            System.out.println(book);
-        }
+        List<Book> bookList = FileManager.loadBooks();
     }
 
     public void addUser() {
@@ -99,6 +96,7 @@ public class LibraryCLI {
             String ID = keyboard.nextLine();
             User user = new User(name, ID);
             library.addUser(user);
+            library.saveUsersToFile();
         } catch (Exception e) {
             System.out.println("Invalid User Input: " + e.getMessage());
         }

@@ -1,6 +1,15 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
 package librarymanagement;
 
+/**
+ *
+ * @author ssdawood
+ */
 import java.io.*;
+import java.nio.file.*;
 import java.util.*;
 
 public class FileManager {
@@ -63,7 +72,7 @@ public class FileManager {
 
             // write all products to the file
             for (User user : users) {
-                out.print(user.getId() + COLUMN_SEP);
+                out.print(user.getID() + COLUMN_SEP);
                 out.println(user.getName());
             }
         }

@@ -5,14 +5,14 @@ public class Book {
     private String author;
     private String ISBN;
     private String publicationDate;
-    public Boolean checkedOut = false;
+    public Boolean checkedOut;
 
     public Book(String title, String author, String ISBN, String publicationDate) {
         this.title = title;
         this.author = author;
         this.ISBN = ISBN;
         this.publicationDate = publicationDate;
-        this.checkedOut = false;
+        this.checkedOut = null;
     }
 
     public String getTitle() {

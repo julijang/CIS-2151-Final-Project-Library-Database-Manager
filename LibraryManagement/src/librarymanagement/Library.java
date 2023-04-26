@@ -13,36 +13,37 @@ public class Library {
     public Library() {
         this.books = new HashMap<>();
         this.users = new HashMap<>();
-        fileManager = new FileManager();
+        this.fileManager = new FileManager();
 
         List<Book> bookList = fileManager.loadBooks();
         for (Book book : bookList) {
             books.put(book.getISBN(), book);
         }
-
         List<User> userList = fileManager.loadUsers();
         for (User user : userList) {
-            users.put(user.getId(), user);
+            users.put(user.getID(), user);
         }
-
     }
 
     public void addBook(Book book) {
         books.put(book.getISBN(), book);
+        fileManager.saveBooks(books.values());
     }
 
     public void addUser(User user) {
-        users.put(user.getId(), user);
+        users.put(user.getID(), user);
+        fileManager.saveUsers(users.values());
     }
 
     public void removeUser(User user) {
-        users.remove(user.getId());
+        users.remove(user.getID());
+        fileManager.saveUsers(users.values());
     }
 
     public void checkOutBook(Book book, User user) {
-        if (!book.getCheckedOut() && users.containsKey(user.getId())) {
+        if (!book.getCheckedOut() && users.containsKey(user.getID())) {
             book.setCheckedOut(true);
-            user.addBorrowedBook(book);
+            user.borrowABook(book);
             System.out.println("Book checked out successfully.");
         } else {
             System.out.println("This book has already been checked out.");
@@ -50,9 +51,9 @@ public class Library {
     }
 
     public void returnBook(Book book, User user) {
-        if (user.hasBorrowedBook(book)) {
+        if (book.getCheckedOut() && users.containsKey(user.getID())) {
             book.setCheckedOut(false);
-            user.removeBorrowedBook(book);
+            user.returnABook(book);
             System.out.println("Book returned successfully.");
         } else {
             System.out.println("This book has not been checked out.");
@@ -67,28 +68,28 @@ public class Library {
        return users.get(ID);
     }
 
-    public HashMap loadBooksFromFile() {
-        List<Book> booksFromFile = FileManager.loadBooks();
-        for (Book book : booksFromFile) {
-            addBook(book);
+
+
+    public void loadBooksFromFile() {
+        List<Book> bookList = fileManager.loadBooks();
+        for (Book book : bookList) {
+            books.put(book.getISBN(), book);
         }
-        return books;
     }
 
-    public HashMap loadUsersFromFile() {
-        List<User> usersFromFile = FileManager.loadUsers();
-        for (User user : usersFromFile) {
-            addUser(user);
+    public void loadUsersFromFile() {
+        List<User> userList = fileManager.loadUsers();
+        for (User user : userList) {
+            users.put(user.getID(), user);
         }
-        return users;
     }
 
     public void saveBooksToFile() {
-        FileManager.saveBooks(books.values());
+        this.fileManager.saveBooks(books.values());
     }
 
     public void saveUsersToFile() {
-        FileManager.saveUsers(users.values());
+        this.fileManager.saveUsers(users.values());
     }
 }
 

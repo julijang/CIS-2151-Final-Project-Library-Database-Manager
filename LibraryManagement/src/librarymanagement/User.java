@@ -1,17 +1,18 @@
 package librarymanagement;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class User {
 
     private String name;
     private String ID;
-    private ArrayList<Book> borrowedBooks;
+
+    private List<Book> borrowedBooks;
 
     public User(String name, String ID) {
         this.name = name;
         this.ID = ID;
-        this.borrowedBooks = new ArrayList<>();
     }
 
     public String getName() {
@@ -22,7 +23,7 @@ public class User {
         this.name = name;
     }
 
-    public String getId() {
+    public String getID() {
         return ID;
     }
 
@@ -30,34 +31,21 @@ public class User {
         this.ID = ID;
     }
 
-    public ArrayList<Book> getBorrowedBooks() {
-        return borrowedBooks;
+    public void borrowABook(Book book){
+        borrowedBooks.add(book);
     }
 
-    public void addBorrowedBook(Book book) {
-        this.borrowedBooks.add(book);
-    }
-
-    public void removeBorrowedBook(Book book) {
-        this.borrowedBooks.remove(book);
-    }
-
-    public boolean hasBorrowedBook(Book book) {
-        return this.borrowedBooks.contains(book);
+    public void returnABook(Book book){
+        borrowedBooks.remove(book);
     }
 
     public void displayUserInformation() {
-        System.out.println("User name: " + this.name);
-        System.out.println("User ID: " + this.ID);
+        System.out.println("Name: " + name);
+        System.out.println("ID: " + ID);
         System.out.println("Borrowed books: ");
         for (Book book : borrowedBooks) {
-            System.out.println(book.toString());
+            System.out.println(book.getTitle());
         }
-    }
-
-    @Override
-    public String toString() {
-        return "User{" + "name=" + name + ", ID=" + ID + ", borrowedBooks=" + borrowedBooks + '}';
     }
 
 }
