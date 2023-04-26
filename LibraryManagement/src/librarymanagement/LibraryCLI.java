@@ -1,5 +1,6 @@
 package librarymanagement;
 
+import java.net.IDN;
 import java.util.*;
 
 public class LibraryCLI {
@@ -8,17 +9,58 @@ public class LibraryCLI {
     Scanner keyboard = new Scanner(System.in);
 
     public void start() {
+        library = new Library();
         library.loadBooksFromFile();
         library.loadUsersFromFile();
+        int input = 0;
 
-        while (true) {
+        while (input != 8) {
+            try {
+                System.out.println("Welcome to the Library database");
+                System.out.println("Please select an option: ");
+                System.out.println("1. Add a book");
+                System.out.println("2. Display all books");
+                System.out.println("3. Add a user");
+                System.out.println("4. Remove a user");
+                System.out.println("5. List users");
+                System.out.println("6. Borrow books");
+                System.out.println("7. Return books");
+                System.out.println("8. Exit application");
+                input = Integer.parseInt(keyboard.nextLine());
+            } catch (Exception e) {
+                System.out.println("Invalid User Input: " + e.getMessage());
+            }
 
-            String input = keyboard.nextLine();
-            System.out.println("Welcome to the Library database" + "\n");
-            System.out.println("Please select an option: " + "\n");
-
-
+            switch (input) {
+                case 1:
+                    addBook();
+                    break;
+                case 2:
+                    displayBooks();
+                    break;
+                case 3:
+                    addUser();
+                    break;
+                case 4:
+                    removeUser();
+                    break;
+                case 5:
+                    listUsers();
+                    break;
+                case 6:
+                    borrowBook();
+                    break;
+                case 7:
+                    returnBook();
+                    break;
+                case 8:
+                    System.out.println("Thank you for using the Library database.");
+                    library.saveBooksToFile();
+                    library.saveUsersToFile();
+            }
         }
+
+        System.out.println("Goodbye!");
 
     }
 
@@ -39,81 +81,99 @@ public class LibraryCLI {
         }
     }
 
-        public void displayBooks() {
-            System.out.println("All books sorted by title: ");
-            List<Book> sortedBooks = new ArrayList<>(library.getBooks());
-            Collections.sort(sortedBooks, Comparator.comparing(Book::getTitle));
-            for (Book book : sortedBooks) {
-                System.out.println(book.toString());
-            }
-        }
+    public void displayBooks() {
+        List<Book> bookList = FileManager.loadBooks();
+        Collections.sort(bookList, Comparator.comparing(Book::getTitle));
 
-        public void addUser() {
-            try {
-                System.out.println("Please enter the user's name: ");
-                String name = keyboard.nextLine();
-                System.out.println("Please enter the user's ID: ");
-                String ID = keyboard.nextLine();
-                User user = new User(name, ID);
-                library.addUser(user);
-            } catch (Exception e) {
-                System.out.println("Invalid User Input: " + e.getMessage());
-            }
+        System.out.println("List of Books:");
+        for (Book book : bookList) {
+            System.out.println(book);
         }
-
-        public void removeUser(User user) {
-            try {
-                System.out.println("Please enter the user's ID: ");
-                String ID = keyboard.nextLine();
-                if(user.getId().equals(ID)) {
-                    library.removeUser(user);
-                } else {
-                    System.out.println("User not found.");
-                }
-            } catch (Exception e) {
-                System.out.println("Invalid User Input: " + e.getMessage());
-            }
-        }
-
-        public void listUsers() {
-            System.out.println("All users sorted by name: ");
-            List<User> sortedUsers = new ArrayList<>(library.getUsers());
-            Collections.sort(sortedUsers, Comparator.comparing(User::getName));
-            for (User user : sortedUsers) {
-                System.out.println(user.toString());
-            }
-        }
-
-        public void borrowBook(User user, Book book) {
-            System.out.println("Please enter your user ID: ");
-            String ID = keyboard.nextLine();
-            System.out.println("Please enter the book's ISBN: ");
-            String ISBN = keyboard.nextLine();
-            if(user.getId().equals(ID) && book.getISBN().equals(ISBN)) {
-                library.checkOutBook(book, user);
-            } else if (!user.getId().equals(ID)) {
-                System.out.println("User not found.");
-            } else if (!book.getISBN().equals(ISBN)) {
-                System.out.println("Book not found.");
-            } else {
-                System.out.println("Invalid information provided.");
-            }
-        }
-
-        public void returnBook(User user, Book book) {
-            System.out.println("Please enter your user ID: ");
-            String ID = keyboard.nextLine();
-            System.out.println("Please enter the book's ISBN: ");
-            String ISBN = keyboard.nextLine();
-            if(user.getId().equals(ID) && book.getISBN().equals(ISBN)) {
-                library.returnBook(book, user);
-            } else if (!user.getId().equals(ID)) {
-                System.out.println("User not found.");
-            } else if (!book.getISBN().equals(ISBN)) {
-                System.out.println("Book not found.");
-            } else {
-                System.out.println("Invalid information provided.");
-            }
-        }
-
     }
+
+    public void addUser() {
+        try {
+            System.out.println("Please enter the user's name: ");
+            String name = keyboard.nextLine();
+            System.out.println("Please enter the user's ID: ");
+            String ID = keyboard.nextLine();
+            User user = new User(name, ID);
+            library.addUser(user);
+        } catch (Exception e) {
+            System.out.println("Invalid User Input: " + e.getMessage());
+        }
+    }
+
+    public void removeUser() {
+        try {
+            System.out.println("Please enter the user's ID: ");
+            String ID = keyboard.nextLine();
+            User user = library.getUser(ID);
+            if (user != null) {
+                library.removeUser(user);
+            } else {
+                System.out.println("User not found.");
+            }
+        } catch (Exception e) {
+            System.out.println("Invalid User Input: " + e.getMessage());
+        }
+    }
+
+    public void listUsers() {
+        List<User> userList = FileManager.loadUsers();
+        Collections.sort(userList, Comparator.comparing(User::getName));
+
+        System.out.println("List of Users:");
+        for (User user : userList) {
+            System.out.println(user);
+        }
+    }
+
+    public void borrowBook() {
+        try {
+            System.out.println("Please enter your user ID: ");
+            String ID = keyboard.nextLine();
+            User user = library.getUser(ID);
+
+            if (user != null) {
+                System.out.println("Please enter the book ISBN: ");
+                String ISBN = keyboard.nextLine();
+                Book book = library.getBook(ISBN);
+
+                if (book != null) {
+                    library.checkOutBook(book, user);
+                } else {
+                    System.out.println("Book not found.");
+                }
+            } else {
+                System.out.println("User not found.");
+            }
+        } catch (Exception e) {
+            System.out.println("Invalid User Input: " + e.getMessage());
+        }
+    }
+
+    public void returnBook() {
+        try {
+            System.out.println("Please enter your user ID: ");
+            String ID = keyboard.nextLine();
+            User user = library.getUser(ID);
+
+            if (user != null) {
+                System.out.println("Please enter the book ISBN: ");
+                String ISBN = keyboard.nextLine();
+                Book book = library.getBook(ISBN);
+
+                if (book != null) {
+                    library.returnBook(book, user);
+                } else {
+                    System.out.println("Book not found.");
+                }
+            } else {
+                System.out.println("User not found.");
+            }
+        } catch (Exception e) {
+            System.out.println("Invalid User Input: " + e.getMessage());
+        }
+    }
+}
