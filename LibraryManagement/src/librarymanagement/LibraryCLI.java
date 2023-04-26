@@ -17,7 +17,7 @@ public class LibraryCLI {
 
         do {
                 try {
-                    System.out.println("Welcome to the Library Management System!" + "\n");
+                    System.out.println("Welcome to the Library Management System!");
                     System.out.println("Please select an option: ");
                     System.out.println("1. Add a book");
                     System.out.println("2. Display all books");
@@ -79,6 +79,7 @@ public class LibraryCLI {
             String pubDate = keyboard.nextLine();
             Book book = new Book(title, author, ISBN, pubDate);
             library.addBook(book);
+            library.saveBooksToFile();
         } catch (Exception e) {
             System.out.println("Invalid User Input: " + e.getMessage());
         }

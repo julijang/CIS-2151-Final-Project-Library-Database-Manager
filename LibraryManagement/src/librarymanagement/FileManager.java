@@ -36,12 +36,11 @@ public class FileManager {
         try (PrintWriter out = new PrintWriter(
                                new BufferedWriter(
                                new FileWriter(BOOKS_FILE)))) {
-
             // write all products to the file
             for (Book book : books) {
                 out.print(book.getTitle() + COLUMN_SEP);
                 out.print(book.getAuthor() + COLUMN_SEP);
-                out.println(book.getISBN() + COLUMN_SEP);
+                out.print(book.getISBN() + COLUMN_SEP);
                 out.println(book.getPublicationDate());
             }
         }
@@ -68,7 +67,6 @@ public class FileManager {
         try (PrintWriter out = new PrintWriter(
                                new BufferedWriter(
                                new FileWriter(USERS_FILE)))) {
-
             // write all products to the file
             for (User user : users) {
                 out.print(user.getID() + COLUMN_SEP);
