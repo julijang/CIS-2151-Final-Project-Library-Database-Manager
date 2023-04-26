@@ -12,58 +12,60 @@ public class LibraryCLI {
         library = new Library();
         library.loadBooksFromFile();
         library.loadUsersFromFile();
-        int input = 0;
+        keyboard = new Scanner(System.in);
+        int input;
 
-        while (input != 8) {
-            try {
-                System.out.println("Welcome to the Library database");
-                System.out.println("Please select an option: ");
-                System.out.println("1. Add a book");
-                System.out.println("2. Display all books");
-                System.out.println("3. Add a user");
-                System.out.println("4. Remove a user");
-                System.out.println("5. List users");
-                System.out.println("6. Borrow books");
-                System.out.println("7. Return books");
-                System.out.println("8. Exit application");
-                input = Integer.parseInt(keyboard.nextLine());
-            } catch (Exception e) {
-                System.out.println("Invalid User Input: " + e.getMessage());
-            }
+        do {
+                try {
+                    System.out.println("Welcome to the Library database");
+                    System.out.println("Please select an option: ");
+                    System.out.println("1. Add a book");
+                    System.out.println("2. Display all books");
+                    System.out.println("3. Add a user");
+                    System.out.println("4. Remove a user");
+                    System.out.println("5. List users");
+                    System.out.println("6. Borrow books");
+                    System.out.println("7. Return books");
+                    System.out.println("8. Exit application");
+                    input = Integer.parseInt(keyboard.nextLine());
+                } catch (Exception e) {
+                    System.out.println("Invalid User Input: " + e.getMessage());
+                    input = 0;
+                }
 
-            switch (input) {
-                case 1:
-                    addBook();
-                    break;
-                case 2:
-                    displayBooks();
-                    break;
-                case 3:
-                    addUser();
-                    break;
-                case 4:
-                    removeUser();
-                    break;
-                case 5:
-                    listUsers();
-                    break;
-                case 6:
-                    borrowBook();
-                    break;
-                case 7:
-                    returnBook();
-                    break;
-                case 8:
-                    System.out.println("Thank you for using the Library database.");
-                    library.saveBooksToFile();
-                    library.saveUsersToFile();
-                    break;
-            }
+                switch (input) {
+                    case 1:
+                        addBook();
+                        break;
+                    case 2:
+                        displayBooks();
+                        break;
+                    case 3:
+                        addUser();
+                        break;
+                    case 4:
+                        removeUser();
+                        break;
+                    case 5:
+                        listUsers();
+                        break;
+                    case 6:
+                        borrowBook();
+                        break;
+                    case 7:
+                        returnBook();
+                        break;
+                    case 8:
+                        System.out.println("Thank you for using the Library database.");
+                        library.saveBooksToFile();
+                        library.saveUsersToFile();
+                        break;
+                    default:
+                        System.out.println("Invalid input, please try again.");
+                }
+            } while (input != 8) ;
+            System.out.println("Goodbye!");
         }
-
-        System.out.println("Goodbye!");
-
-    }
 
     public void addBook() {
         try {
@@ -83,8 +85,13 @@ public class LibraryCLI {
     }
 
     public void displayBooks() {
-        System.out.println("List of Books:");
         List<Book> bookList = FileManager.loadBooks();
+        Collections.sort(bookList, Comparator.comparing(Book::getTitle));
+
+        System.out.println("List of Books:");
+        for (Book book : bookList) {
+            System.out.println(book);
+        }
     }
 
     public void addUser() {

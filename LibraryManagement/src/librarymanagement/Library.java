@@ -66,11 +66,21 @@ public class Library {
     }
 
     public void saveBooksToFile() {
-        FileManager.saveBooks(books.values());
+        try {
+            FileManager.saveBooks(books.values());
+        }
+        catch (NullPointerException e) {
+            System.out.println("The target file does not exist.");
+        }
     }
 
     public void saveUsersToFile() {
-        FileManager.saveUsers(users.values());
+        try {
+            FileManager.saveUsers(users.values());
+        }
+        catch (Exception e) {
+            System.out.println("The target file does not exist.");
+        }
     }
 }
 
