@@ -1,20 +1,40 @@
-To Kill a Mockingbird,Harper Lee,978-0143126560,1960
-Dune,Frank Herbert,978-0553296983,1965
-The Great Gatsby,F. Scott Fitzgerald,978-0743273565,1925
-1984,George Orwell,978-0451524935,1949
-One Hundred Years of Solitude,Gabriel Garcia Marquez,978-0307474278,1967
-The Lord of the Rings,J.R.R. Tolkien,978-0618640157,1954
-The Catcher in the Rye,J.D. Salinger,978-0307743657,1951
-Pride and Prejudice,Jane Austen,978-0143039433,1813
-Brave New World,Aldous Huxley,978-0061122415,1932
-Fahrenheit 451,Ray Bradbury,978-0142000670,1953
-Animal Farm,George Orwell,978-0060838652,1945
-Crime and Punishment,Fyodor Dostoyevsky,978-0140184621,1866
-The Scarlet Letter,Nathaniel Hawthorne,978-0451531674,1850
-The Picture of Dorian Gray,Oscar Wilde,978-0143107637,1890
-Dracula,Bram Stoker,978-0451526342,1897
-Wuthering Heights,Emily Bronte,978-1503296148,1847
-Jane Eyre,Charlotte Bronte,978-0143133841,1847
-The Odyssey,Homer,978-0307949611,700 BC
-The Iliad,Homer,978-0140449266,700 BC
-Frankenstein,Mary Shelley,978-1503262565,1818
+The Great Gatsby,F. Scott Fitzgerald,978-0743273565,
+1925
+The Catcher in the Rye,J.D. Salinger,978-0307743657,
+1951
+Jane Eyre,Charlotte Bronte,978-0143133841,
+1847
+To Kill a Mockingbird,Harper Lee,978-0143126560,
+1960
+Dune,Frank Herbert,978-0553296983,
+1965
+1984,George Orwell,978-0451524935,
+1949
+Frankenstein,Mary Shelley,978-1503262565,
+1818
+Brave New World,Aldous Huxley,978-0061122415,
+1932
+Crime and Punishment,Fyodor Dostoyevsky,978-0140184621,
+1866
+Pride and Prejudice,Jane Austen,978-0143039433,
+1813
+Dracula,Bram Stoker,978-0451526342,
+1897
+One Hundred Years of Solitude,Gabriel Garcia Marquez,978-0307474278,
+1967
+Wuthering Heights,Emily Bronte,978-1503296148,
+1847
+Animal Farm,George Orwell,978-0060838652,
+1945
+The Picture of Dorian Gray,Oscar Wilde,978-0143107637,
+1890
+The Scarlet Letter,Nathaniel Hawthorne,978-0451531674,
+1850
+The Iliad,Homer,978-0140449266,
+700 BC
+The Lord of the Rings,J.R.R. Tolkien,978-0618640157,
+1954
+Fahrenheit 451,Ray Bradbury,978-0142000670,
+1953
+The Odyssey,Homer,978-0307949611,
+700 BC

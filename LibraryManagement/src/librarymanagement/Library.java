@@ -9,6 +9,11 @@ public class Library {
     private HashMap<String, Book> books;
     private HashMap<String, User> users;
 
+    public Library() {
+        books = new HashMap<>();
+        users = new HashMap<>();
+    }
+
     public void addBook(Book book) {
         books.put(book.getISBN(), book);
     }
@@ -19,6 +24,7 @@ public class Library {
 
     public void removeUser(User user) {
         users.remove(user.getID());
+        System.out.println("User " + user + "removed successfully.");
     }
 
     public void checkOutBook(Book book, User user) {
@@ -26,6 +32,7 @@ public class Library {
             book.setCheckedOut(true);
             user.borrowABook(book);
             System.out.println("Book checked out successfully.");
+            user.displayUserInformation();
         } else {
             System.out.println("This book has already been checked out.");
         }
@@ -36,6 +43,7 @@ public class Library {
             book.setCheckedOut(false);
             user.returnABook(book);
             System.out.println("Book returned successfully.");
+            user.displayUserInformation();
         } else {
             System.out.println("This book has not been checked out.");
         }
@@ -68,6 +76,7 @@ public class Library {
     public void saveBooksToFile() {
         try {
             FileManager.saveBooks(books.values());
+            System.out.println("Book saved successfully.");
         }
         catch (NullPointerException e) {
             System.out.println("The target file does not exist.");
@@ -77,6 +86,7 @@ public class Library {
     public void saveUsersToFile() {
         try {
             FileManager.saveUsers(users.values());
+            System.out.println("User saved successfully.");
         }
         catch (Exception e) {
             System.out.println("The target file does not exist.");

@@ -13,8 +13,8 @@ import java.nio.file.*;
 import java.util.*;
 
 public class FileManager {
-    private static final String BOOKS_FILE = "books.txt";
-    private static final String USERS_FILE = "users.txt";
+    private static final String BOOKS_FILE = "LibraryManagement/books.txt";
+    private static final String USERS_FILE = "LibraryManagement/users.txt";
     private static final String COLUMN_SEP = ",";
 
     public static List<Book> loadBooks() {

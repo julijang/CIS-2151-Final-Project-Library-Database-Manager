@@ -56,7 +56,7 @@ public class LibraryCLI {
                         returnBook();
                         break;
                     case 8:
-                        System.out.println("Thank you for using the Library database.");
+                        System.out.println("Thank you for using the Library Management System.");
                         library.saveBooksToFile();
                         library.saveUsersToFile();
                         break;
@@ -90,7 +90,7 @@ public class LibraryCLI {
 
         System.out.println("List of Books:");
         for (Book book : bookList) {
-            System.out.println(book);
+            System.out.println(book.getTitle() + "," + book.getAuthor() + "," + book.getISBN() + "," + book.getPublicationDate());
         }
     }
 
@@ -129,7 +129,7 @@ public class LibraryCLI {
 
         System.out.println("List of Users:");
         for (User user : userList) {
-            System.out.println(user);
+            System.out.println(user.getName() + "," + user.getID());
         }
     }
 
