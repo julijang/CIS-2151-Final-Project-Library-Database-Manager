@@ -9,11 +9,6 @@ public class Library {
     private HashMap<String, Book> books;
     private HashMap<String, User> users;
 
-    public Library(HashMap<String, Book> books, HashMap<String, User> users) {
-        this.books = books;
-        this.users = users;
-    }
-
     public void addBook(Book book) {
         books.put(book.getISBN(), book);
     }

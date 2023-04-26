@@ -6,11 +6,10 @@ import java.util.*;
 public class LibraryCLI {
 
     private Library library;
-    Scanner keyboard = new Scanner(System.in);
+    Scanner keyboard;
 
     public void start() {
         library = new Library();
-        FileManager fileManager = new FileManager();
         library.loadBooksFromFile();
         library.loadUsersFromFile();
         int input = 0;
