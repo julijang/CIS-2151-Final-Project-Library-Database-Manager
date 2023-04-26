@@ -8,36 +8,22 @@ public class Library {
 
     private HashMap<String, Book> books;
     private HashMap<String, User> users;
-    FileManager fileManager;
 
-    public Library() {
-        this.books = new HashMap<>();
-        this.users = new HashMap<>();
-        this.fileManager = new FileManager();
-
-        List<Book> bookList = fileManager.loadBooks();
-        for (Book book : bookList) {
-            books.put(book.getISBN(), book);
-        }
-        List<User> userList = fileManager.loadUsers();
-        for (User user : userList) {
-            users.put(user.getID(), user);
-        }
+    public Library(HashMap<String, Book> books, HashMap<String, User> users) {
+        this.books = books;
+        this.users = users;
     }
 
     public void addBook(Book book) {
         books.put(book.getISBN(), book);
-        fileManager.saveBooks(books.values());
     }
 
     public void addUser(User user) {
         users.put(user.getID(), user);
-        fileManager.saveUsers(users.values());
     }
 
     public void removeUser(User user) {
         users.remove(user.getID());
-        fileManager.saveUsers(users.values());
     }
 
     public void checkOutBook(Book book, User user) {
@@ -71,25 +57,25 @@ public class Library {
 
 
     public void loadBooksFromFile() {
-        List<Book> bookList = fileManager.loadBooks();
+        List<Book> bookList = FileManager.loadBooks();
         for (Book book : bookList) {
             books.put(book.getISBN(), book);
         }
     }
 
     public void loadUsersFromFile() {
-        List<User> userList = fileManager.loadUsers();
+        List<User> userList = FileManager.loadUsers();
         for (User user : userList) {
             users.put(user.getID(), user);
         }
     }
 
     public void saveBooksToFile() {
-        this.fileManager.saveBooks(books.values());
+        FileManager.saveBooks(books.values());
     }
 
     public void saveUsersToFile() {
-        this.fileManager.saveUsers(users.values());
+        FileManager.saveUsers(users.values());
     }
 }
 

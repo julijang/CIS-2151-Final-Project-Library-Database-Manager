@@ -20,7 +20,6 @@ public class FileManager {
     public static List<Book> loadBooks() {
         List<Book> books = new ArrayList<>();
         try (BufferedReader reader = new BufferedReader(new FileReader(BOOKS_FILE))) {
-
             String line;
             while ((line = reader.readLine()) != null) {
                 String[] bookData = line.split(",");
