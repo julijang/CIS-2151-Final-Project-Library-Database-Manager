@@ -17,7 +17,7 @@ public class LibraryCLI {
 
         do {
                 try {
-                    System.out.println("Welcome to the Library database");
+                    System.out.println("Welcome to the Library Management System!" + "\n");
                     System.out.println("Please select an option: ");
                     System.out.println("1. Add a book");
                     System.out.println("2. Display all books");
