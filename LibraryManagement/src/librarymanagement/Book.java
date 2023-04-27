@@ -12,6 +12,7 @@ public class Book {
         this.author = author;
         this.ISBN = ISBN;
         this.publicationDate = publicationDate;
+        this.checkedOut = false;
     }
 
     public String getTitle() {

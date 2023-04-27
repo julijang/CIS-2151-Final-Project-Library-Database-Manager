@@ -13,6 +13,7 @@ public class User {
     public User(String name, String ID) {
         this.name = name;
         this.ID = ID;
+        borrowedBooks = new ArrayList<>();
     }
 
     public String getName() {
@@ -45,6 +46,9 @@ public class User {
         System.out.println("Borrowed books: ");
         for (Book book : borrowedBooks) {
             System.out.println(book.getTitle());
+        }
+        if (borrowedBooks.isEmpty()) {
+            System.out.println("(empty)");
         }
     }
 

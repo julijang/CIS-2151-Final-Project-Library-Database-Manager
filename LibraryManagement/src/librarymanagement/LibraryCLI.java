@@ -116,6 +116,7 @@ public class LibraryCLI {
             User user = library.getUser(ID);
             if (user != null) {
                 library.removeUser(user);
+                library.saveUsersToFile();
             } else {
                 System.out.println("User not found.");
             }

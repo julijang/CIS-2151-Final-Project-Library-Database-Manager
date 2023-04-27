@@ -24,7 +24,7 @@ public class Library {
 
     public void removeUser(User user) {
         users.remove(user.getID());
-        System.out.println("User " + user + "removed successfully.");
+        System.out.println("User " + user.getName() + " removed successfully.");
     }
 
     public void checkOutBook(Book book, User user) {
@@ -76,7 +76,7 @@ public class Library {
     public void saveBooksToFile() {
         try {
             FileManager.saveBooks(books.values());
-            System.out.println("Book saved successfully.");
+            System.out.println("Books saved successfully.");
         }
         catch (NullPointerException e) {
             System.out.println("The target file does not exist.");
@@ -86,7 +86,7 @@ public class Library {
     public void saveUsersToFile() {
         try {
             FileManager.saveUsers(users.values());
-            System.out.println("User saved successfully.");
+            System.out.println("Users saved successfully.");
         }
         catch (Exception e) {
             System.out.println("The target file does not exist.");
